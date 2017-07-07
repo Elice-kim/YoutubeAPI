@@ -28,7 +28,7 @@ public class ViewSwapperAdapter extends FragmentStateAdapter {
             case INDEX_CHAT:
                 return new ChattingFragment();
             case INDEX_VIDEO:
-                return new YoutubeFragment();
+                return YoutubeFragment.newInstance();
             case INDEX_SETTING:
                 return new SettingFragment();
         }
