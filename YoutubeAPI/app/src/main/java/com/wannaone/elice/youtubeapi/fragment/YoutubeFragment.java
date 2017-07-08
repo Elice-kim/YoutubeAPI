@@ -17,20 +17,19 @@ import com.wannaone.elice.youtubeapi.adpater.YoutubeViewAdapter;
 import com.wannaone.elice.youtubeapi.data.YoutubeListData;
 import com.wannaone.elice.youtubeapi.presenter.YoutubePresenter;
 
-import java.util.ArrayList;
-
 /**
  * A simple {@link Fragment} subclass.
  */
-public class YoutubeFragment extends Fragment {
+public class YoutubeFragment extends Fragment implements YoutubeViewAdapter.OnLoadMoreListener {
 
     RecyclerView videoRecyclerView;
     SwipeRefreshLayout refreshLayout;
     Handler mHandler;
     YoutubePresenter presenter;
-    ArrayList<YoutubeListData.Item> dataList;
-    ArrayList<YoutubeListData.Item> baseList;
+    //    ArrayList<YoutubeListData.Item> dataList;
+//    ArrayList<YoutubeListData.Item> baseList;
     YoutubeViewAdapter adapter;
+    String token;
 
     public static YoutubeFragment newInstance() {
         YoutubeFragment youtubeFragment = new YoutubeFragment();
@@ -41,32 +40,32 @@ public class YoutubeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_youtube, container, false);
-        dataList = new ArrayList<>();
-        baseList = new ArrayList<>();
+//        dataList = new ArrayList<>();
+//        baseList = new ArrayList<>();
         refreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.youtubeRefresh);
-        adapter = new YoutubeViewAdapter(getContext(), baseList);
+        adapter = new YoutubeViewAdapter(getContext(), this);
         videoRecyclerView = (RecyclerView) v.findViewById(R.id.videoView);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        videoRecyclerView.setLayoutManager(mLayoutManager);
         videoRecyclerView.setAdapter(adapter);
-        videoRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        adapter.setLinearLayoutManager(mLayoutManager);
         mHandler = new Handler(Looper.getMainLooper());
+        adapter.setRecyclerView(videoRecyclerView);
         setupView();
         updateList();
-
         return v;
     }
 
     private void setupView() {
-
         presenter = new YoutubePresenter();
         presenter.setView(this);
         presenter.loadVideoList();
     }
 
     public void onComplete(YoutubeListData body) {
-        dataList = (ArrayList<YoutubeListData.Item>) body.items;
-        for (YoutubeListData.Item item : dataList) {
-            baseList.add(item);
-        }
+        token = body.nextPageToken;
+//        adapter.addItemMore(body.items);
+        adapter.addAll(body.items);
         adapter.notifyDataSetChanged();
     }
 
@@ -86,7 +85,25 @@ public class YoutubeFragment extends Fragment {
 
     //새로 동영상 리스트를 가져와 업데이트 해주는 기능
     private void refreshData() {
+        presenter.loadVideoList();
         refreshLayout.setRefreshing(false);
     }
 
+    @Override
+    public void onLoadMore() {
+        //showing progressBar
+//        adapter.setProgressMore(true);
+        if (token != null) {
+            presenter.loadMore(token);
+        }
+    }
+
+    public void onSuccessMore(YoutubeListData body) {
+        token = body.nextPageToken;
+        adapter.addItemMore(body.items);
+        adapter.setIsMoreLoading(false);
+        //recyclerview의 addOnscrollLister 작동하도록 함 (스크롤 내리면 계속 로딩되도록)
+//        adapter.setMoreLoading(false);
+//        adapter.setProgressMore(false);
+    }
 }

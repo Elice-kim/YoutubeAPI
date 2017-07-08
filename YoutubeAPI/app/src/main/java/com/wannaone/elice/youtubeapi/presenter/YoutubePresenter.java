@@ -17,9 +17,8 @@ import retrofit2.Response;
 public class YoutubePresenter extends BasePresenter<YoutubeFragment> {
 
     public void loadVideoList(){
-
         DefaultRestClient<YoutubeService> client = new DefaultRestClient();
-        YoutubeService service = client.getService(YoutubeService.class);
+        YoutubeService service = client.getService(YoutubeService.class, view.getContext());
         Call<YoutubeListData> call = service.groupList("워너원");
         call.enqueue(new Callback<YoutubeListData>() {
             @Override
@@ -27,6 +26,26 @@ public class YoutubePresenter extends BasePresenter<YoutubeFragment> {
                 if(response.isSuccessful())
                 {
                     view.onComplete(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<YoutubeListData> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+    public void loadMore(String token){
+        DefaultRestClient<YoutubeService> client = new DefaultRestClient<>();
+        YoutubeService service = client.getService(YoutubeService.class, view.getContext());
+        Call<YoutubeListData> call = service.loadMore(token, "워너원");
+        call.enqueue(new Callback<YoutubeListData>() {
+            @Override
+            public void onResponse(Call<YoutubeListData> call, Response<YoutubeListData> response) {
+                if(response.isSuccessful()){
+                    view.onSuccessMore(response.body());
                 }
             }
 

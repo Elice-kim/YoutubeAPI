@@ -1,5 +1,9 @@
 package com.wannaone.elice.youtubeapi.module;
 
+import android.content.Context;
+
+import com.readystatesoftware.chuck.ChuckInterceptor;
+
 import java.io.IOException;
 
 import okhttp3.Interceptor;
@@ -19,7 +23,7 @@ public class DefaultRestClient<T> {
     private T service;
     public String baseUrl = "https://www.googleapis.com/youtube/v3/";
 
-    public T getService(Class<? extends T> type) {
+    public T getService(Class<? extends T> type, Context context) {
 
         if (service == null) {
 
@@ -32,6 +36,7 @@ public class DefaultRestClient<T> {
                     = new OkHttpClient
                     .Builder()
                     .addInterceptor(loggingInterceptor)
+                    .addInterceptor(new ChuckInterceptor(context))
                     .addInterceptor(new Interceptor() {
 
                         @Override
@@ -47,6 +52,7 @@ public class DefaultRestClient<T> {
                             return chain.proceed(request);
                         }
                     }).build();
+
 
             Retrofit client = new Retrofit.Builder()
                     .baseUrl(baseUrl)
