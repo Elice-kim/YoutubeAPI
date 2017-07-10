@@ -26,8 +26,6 @@ public class YoutubeFragment extends BaseFragment implements YoutubeViewAdapter.
     SwipeRefreshLayout refreshLayout;
     Handler mHandler;
     YoutubePresenter presenter;
-    //    ArrayList<YoutubeListData.Item> dataList;
-//    ArrayList<YoutubeListData.Item> baseList;
     YoutubeViewAdapter adapter;
     String token;
 
@@ -40,8 +38,6 @@ public class YoutubeFragment extends BaseFragment implements YoutubeViewAdapter.
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_youtube, container, false);
-//        dataList = new ArrayList<>();
-//        baseList = new ArrayList<>();
         refreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.youtubeRefresh);
         adapter = new YoutubeViewAdapter(getContext(), this);
         videoRecyclerView = (RecyclerView) v.findViewById(R.id.videoView);
@@ -64,7 +60,6 @@ public class YoutubeFragment extends BaseFragment implements YoutubeViewAdapter.
 
     public void onComplete(YoutubeListData body) {
         token = body.nextPageToken;
-//        adapter.addItemMore(body.items);
         adapter.addAll(body.items);
         adapter.notifyDataSetChanged();
     }
@@ -102,8 +97,5 @@ public class YoutubeFragment extends BaseFragment implements YoutubeViewAdapter.
         token = body.nextPageToken;
         adapter.addItemMore(body.items);
         adapter.setIsMoreLoading(false);
-        //recyclerview의 addOnscrollLister 작동하도록 함 (스크롤 내리면 계속 로딩되도록)
-//        adapter.setMoreLoading(false);
-//        adapter.setProgressMore(false);
     }
 }
