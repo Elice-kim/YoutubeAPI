@@ -1,8 +1,9 @@
-package com.wannaone.elice.youtubeapi.activity;
+package com.wannaone.elice.youtubeapi;
 
 import android.os.Bundle;
 
 import com.wannaone.elice.youtubeapi.R;
+import com.wannaone.elice.youtubeapi.activity.BaseActivity;
 import com.wannaone.elice.youtubeapi.adpater.ViewSwapperAdapter;
 import com.wannaone.elice.youtubeapi.bottomnavigation.AdaptableBottomNavigationView;
 import com.wannaone.elice.youtubeapi.bottomnavigation.ViewSwapper;
