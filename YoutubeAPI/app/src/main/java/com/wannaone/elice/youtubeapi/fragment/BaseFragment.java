@@ -1,6 +1,8 @@
-package com.wannaone.elice.youtubeapi;
+package com.wannaone.elice.youtubeapi.fragment;
 
 import android.support.v4.app.Fragment;
+
+import com.wannaone.elice.youtubeapi.activity.BaseActivity;
 
 /**
  * Created by elice.kim on 2017. 7. 8..

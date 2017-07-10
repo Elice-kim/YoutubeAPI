@@ -1,9 +1,11 @@
-package com.wannaone.elice.youtubeapi;
+package com.wannaone.elice.youtubeapi.activity;
 
 import android.app.AlertDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
+
+import com.wannaone.elice.youtubeapi.R;
 
 public class BaseActivity extends AppCompatActivity {
 

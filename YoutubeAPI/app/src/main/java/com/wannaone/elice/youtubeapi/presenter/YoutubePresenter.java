@@ -1,6 +1,5 @@
 package com.wannaone.elice.youtubeapi.presenter;
 
-import com.wannaone.elice.youtubeapi.BasePresenter;
 import com.wannaone.elice.youtubeapi.data.YoutubeListData;
 import com.wannaone.elice.youtubeapi.fragment.YoutubeFragment;
 import com.wannaone.elice.youtubeapi.module.DefaultRestClient;

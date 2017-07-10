@@ -14,7 +14,7 @@
         <meta-data
             android:name="com.wannaone.elice.youtubeapi.module.TAcademyGlideModule"
             android:value="GlideModule" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

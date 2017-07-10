@@ -1,4 +1,4 @@
-package com.wannaone.elice.youtubeapi;
+package com.wannaone.elice.youtubeapi.presenter;
 
 /**
  * Created by elice.kim on 2017. 7. 7..

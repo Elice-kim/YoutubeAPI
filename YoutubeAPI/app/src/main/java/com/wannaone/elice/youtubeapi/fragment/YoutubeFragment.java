@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.wannaone.elice.youtubeapi.BaseFragment;
 import com.wannaone.elice.youtubeapi.R;
 import com.wannaone.elice.youtubeapi.adpater.YoutubeViewAdapter;
 import com.wannaone.elice.youtubeapi.data.YoutubeListData;
