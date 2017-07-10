@@ -12,9 +12,9 @@ import retrofit2.http.Query;
 
 public interface YoutubeService {
 
-    @GET("search?key=AIzaSyCQCuFaFfOYy4Gp0YQ91PBL_DAoxR8bex4&part=snippet&maxResults=10")
+    @GET("search?key=AIzaSyCQCuFaFfOYy4Gp0YQ91PBL_DAoxR8bex4&part=snippet&maxResults=15")
     Call<YoutubeListData> groupList(@Query("q") String name);
 
-    @GET("search?key=AIzaSyCQCuFaFfOYy4Gp0YQ91PBL_DAoxR8bex4&part=snippet&maxResults=10")
+    @GET("search?key=AIzaSyCQCuFaFfOYy4Gp0YQ91PBL_DAoxR8bex4&part=snippet&maxResults=15")
     Call<YoutubeListData> loadMore(@Query("pageToken") String token, @Query("q") String name);
 }

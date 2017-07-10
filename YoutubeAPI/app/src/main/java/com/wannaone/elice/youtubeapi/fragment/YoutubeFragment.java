@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.wannaone.elice.youtubeapi.BaseFragment;
 import com.wannaone.elice.youtubeapi.R;
 import com.wannaone.elice.youtubeapi.adpater.YoutubeViewAdapter;
 import com.wannaone.elice.youtubeapi.data.YoutubeListData;
@@ -20,7 +21,7 @@ import com.wannaone.elice.youtubeapi.presenter.YoutubePresenter;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class YoutubeFragment extends Fragment implements YoutubeViewAdapter.OnLoadMoreListener {
+public class YoutubeFragment extends BaseFragment implements YoutubeViewAdapter.OnLoadMoreListener {
 
     RecyclerView videoRecyclerView;
     SwipeRefreshLayout refreshLayout;
@@ -91,14 +92,14 @@ public class YoutubeFragment extends Fragment implements YoutubeViewAdapter.OnLo
 
     @Override
     public void onLoadMore() {
-        //showing progressBar
-//        adapter.setProgressMore(true);
         if (token != null) {
+            showLoading();
             presenter.loadMore(token);
         }
     }
 
     public void onSuccessMore(YoutubeListData body) {
+        hideLoading();
         token = body.nextPageToken;
         adapter.addItemMore(body.items);
         adapter.setIsMoreLoading(false);

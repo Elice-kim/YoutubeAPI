@@ -1,13 +1,12 @@
 package com.wannaone.elice.youtubeapi;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.wannaone.elice.youtubeapi.adpater.ViewSwapperAdapter;
 import com.wannaone.elice.youtubeapi.bottomnavigation.AdaptableBottomNavigationView;
 import com.wannaone.elice.youtubeapi.bottomnavigation.ViewSwapper;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private AdaptableBottomNavigationView bottomNavigationView;
     private ViewSwapperAdapter viewSwapperAdapter;

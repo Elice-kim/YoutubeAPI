@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -76,11 +75,7 @@ public class YoutubeViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == VIEW_ITEM) {
-            return new YoutubeViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.view_youtube, parent, false));
-        } else {
-            return new ProgressViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_progressbar, parent, false));
-        }
+        return new YoutubeViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.view_youtube, parent, false));
     }
 
     @Override
@@ -118,7 +113,7 @@ public class YoutubeViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     public void addItemMore(List<YoutubeListData.Item> lst) {
         videoArray.addAll(lst);
-        notifyItemRangeChanged(0, videoArray.size());
+        notifyDataSetChanged();
     }
 
     public void setIsMoreLoading(boolean isMoreLoading) {
@@ -141,12 +136,4 @@ public class YoutubeViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
     }
 
-    static class ProgressViewHolder extends RecyclerView.ViewHolder {
-        public ProgressBar pBar;
-
-        public ProgressViewHolder(View v) {
-            super(v);
-            pBar = (ProgressBar) v.findViewById(R.id.pBar);
-        }
-    }
 }

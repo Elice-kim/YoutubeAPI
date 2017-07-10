@@ -15,26 +15,52 @@
         android:layout_marginTop="10dp"
         android:scaleType="centerCrop" />
 
-    <TextView
-        android:id="@+id/titleTxt"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="10dp"
-        android:textSize="18sp"
-        android:textColor="@android:color/black"
-        android:textStyle="bold"
-        tools:text="이건 몰랐지 제목이야" />
+        android:layout_marginRight="16dp">
 
-    <TextView
-        android:id="@+id/channelTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:textSize="15sp"
-        tools:text="여긴 채널이름" />
+        <ImageView
+            android:id="@+id/playImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/playbutton" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/playImage"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/titleTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/playImage"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="이건 몰랐지 제목이야" />
+
+            <TextView
+                android:id="@+id/channelTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/playImage"
+                android:textSize="15sp"
+                tools:text="여긴 채널이름" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
 
     <View
         android:layout_width="match_parent"
